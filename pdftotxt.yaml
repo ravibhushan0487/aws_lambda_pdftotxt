@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: An AWS Serverless Specification template describing your function.
+Parameters:
+  S3Bucket:
+    Description: Name of the S3 Bucket
+    Type: String
+Resources:
+  pdftotxt:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.7
+      CodeUri: .
+      Description: ''
+      MemorySize: 512
+      Timeout: 900
+      Role: 'arn:aws:iam::430118811804:role/lambda_s3_opensearch_full_access'
+      Environment:
+        Variables:
+          TARGET_BUCKET: !Ref S3Bucket
+      Events:
+        CreateBucketEvent:
+          Type: S3
+          Properties:
+            Bucket: !Ref S3Bucket
+            Events: s3:ObjectCreated:*
+      Layers:
+        - 'arn:aws:lambda:ap-northeast-1:844028273225:layer:tika:1'
