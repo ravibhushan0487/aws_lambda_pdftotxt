@@ -21,7 +21,7 @@ Resources:
           TARGET_BUCKET: !Ref S3Bucket
       Events:
         CreateBucketEvent:
-          Type: AWS::S3::Bucket
+          Type: S3
           Properties:
             Bucket: !Ref S3Bucket
             Events: s3:ObjectCreated:*
