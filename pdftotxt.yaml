@@ -19,11 +19,5 @@ Resources:
       Environment:
         Variables:
           TARGET_BUCKET: !Ref S3Bucket
-      Events:
-        CreateBucketEvent:
-          Type: S3
-          Properties:
-            Bucket: !Ref S3Bucket
-            Events: s3:ObjectCreated:*
       Layers:
         - 'arn:aws:lambda:ap-northeast-1:844028273225:layer:tika:1'
