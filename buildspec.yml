@@ -5,7 +5,7 @@ phases:
       python: 3.10
   build:
     commands:
-      - aws cloudformation package --template-file pdftotxt.yaml --s3-bucket ravi-pgdcc-artifact-bucket --output-template-file lambdaoutput.yaml --capabilities CAPABILITY_AUTO_EXPAND
+      - aws cloudformation package --template-file pdftotxt.yaml --s3-bucket ravi-pgdcc-artifact-bucket --output-template-file lambdaoutput.yaml
 
 artifacts:
   type: zip
